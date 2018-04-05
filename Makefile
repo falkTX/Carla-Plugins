@@ -6,6 +6,9 @@
 
 # NOTE: this file assumes Makefile.mk has been included before
 
+# dummy first target that does nothing
+nothing:
+
 # ---------------------------------------------------------------------------------------------------------------------
 # DPF plugins
 

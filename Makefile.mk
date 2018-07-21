@@ -60,9 +60,11 @@ BASE_FLAGS += -DHAVE_PROJECTM
 endif
 
 ifeq ($(HAVE_ZYN_DEPS),true)
+ifneq ($(DEBUG),true)
 BASE_FLAGS += -DHAVE_ZYN_DEPS
 ifeq ($(HAVE_ZYN_UI_DEPS),true)
 BASE_FLAGS += -DHAVE_ZYN_UI_DEPS
+endif
 endif
 endif
 

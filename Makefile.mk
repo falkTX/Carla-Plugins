@@ -11,10 +11,7 @@ endif
 endif
 
 ifeq ($(MACOS_OR_WIN32),true)
-HAVE_DGL = true
 SKIP_ZYN_SYNTH = true
-else
-HAVE_DGL = $(shell pkg-config --exists gl x11 && echo true)
 endif
 
 HAVE_NTK      = $(shell pkg-config --exists ntk ntk_images && echo true)
@@ -51,10 +48,6 @@ endif
 
 # ---------------------------------------------------------------------------------------------------------------------
 
-ifeq ($(HAVE_DGL),true)
-BASE_FLAGS += -DHAVE_DGL
-endif
-
 ifeq ($(HAVE_PROJECTM),true)
 BASE_FLAGS += -DHAVE_PROJECTM
 endif
@@ -70,26 +63,6 @@ endif
 
 # ---------------------------------------------------------------------------------------------------------------------
 
-ifeq ($(HAVE_DGL),true)
-
-ifeq ($(MACOS_OR_WIN32),true)
-ifeq ($(MACOS),true)
-DGL_LIBS   = -framework OpenGL -framework Cocoa
-endif
-ifeq ($(WIN32),true)
-DGL_LIBS   = -lopengl32 -lgdi32
-endif
-else
-
-DGL_FLAGS  = $(shell pkg-config --cflags gl x11)
-DGL_LIBS   = $(shell pkg-config --libs gl x11)
-endif
-
-DGL_FLAGS += -DDGL_NAMESPACE=CarlaDGL -DDGL_FILE_BROWSER_DISABLED -DDGL_NO_SHARED_RESOURCES
-endif
-
-# ---------------------------------------------------------------------------------------------------------------------
-
 ifeq ($(HAVE_PROJECTM),true)
 PROJECTM_FLAGS = $(shell pkg-config --cflags libprojectM)
 PROJECTM_LIBS  = $(shell pkg-config --libs libprojectM)
@@ -101,10 +74,10 @@ endif
 DPF_FLAGS  = -I$(CWDE)/modules/distrho
 
 ifeq ($(HAVE_DGL),true)
+DPF_FLAGS += -I$(CWDE)/modules/dgl
 ifneq ($(MACOS_OR_WIN32),true)
 DPF_FLAGS += $(shell pkg-config --cflags gl)
 endif
-DPF_FLAGS += -I$(CWDE)/modules/dgl -DDGL_NAMESPACE=CarlaDGL -DDGL_FILE_BROWSER_DISABLED -DDGL_NO_SHARED_RESOURCES
 endif
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -168,16 +141,9 @@ endif # HAVE_ZYN_DEPS
 
 # ---------------------------------------------------------------------------------------------------------------------
 
-NATIVE_PLUGINS_LIBS += $(DGL_LIBS)
 NATIVE_PLUGINS_LIBS += $(PROJECTM_LIBS)
 NATIVE_PLUGINS_LIBS += $(ZYN_DSP_LIBS)
 NATIVE_PLUGINS_LIBS += $(ZITA_DSP_LIBS)
-
-# ---------------------------------------------------------------------------------------------------------------------
-
-ifeq ($(HAVE_DGL),true)
-ALL_LIBS += $(MODULEDIR)/dgl.a
-endif
 
 # ---------------------------------------------------------------------------------------------------------------------
 

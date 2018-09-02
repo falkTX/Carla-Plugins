@@ -64,8 +64,8 @@ endif
 # ---------------------------------------------------------------------------------------------------------------------
 
 ifeq ($(HAVE_PROJECTM),true)
-PROJECTM_FLAGS = $(shell pkg-config --cflags libprojectM)
-PROJECTM_LIBS  = $(shell pkg-config --libs libprojectM)
+PROJECTM_FLAGS = $(shell pkg-config $(PKG_CONFIG_FLAGS) --cflags libprojectM)
+PROJECTM_LIBS  = $(shell pkg-config $(PKG_CONFIG_FLAGS) --libs libprojectM)
 endif
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -76,7 +76,7 @@ DPF_FLAGS  = -I$(CWDE)/modules/distrho
 ifeq ($(HAVE_DGL),true)
 DPF_FLAGS += -I$(CWDE)/modules/dgl
 ifneq ($(MACOS_OR_WIN32),true)
-DPF_FLAGS += $(shell pkg-config --cflags gl)
+DPF_FLAGS += $(shell pkg-config $(PKG_CONFIG_FLAGS) --cflags gl)
 endif
 endif
 
@@ -86,20 +86,20 @@ endif
 ifeq ($(HAVE_ZYN_DEPS),true)
 
 # Common flags
-ZYN_BASE_FLAGS  = $(shell pkg-config --cflags liblo mxml)
+ZYN_BASE_FLAGS  = $(shell pkg-config $(PKG_CONFIG_FLAGS) --cflags liblo mxml)
 ZYN_BASE_FLAGS += -Iexternal/zynaddsubfx -Iexternal/zynaddsubfx/rtosc
 ifneq ($(WIN32),true)
 ZYN_BASE_FLAGS += -DHAVE_ASYNC
 endif
 
-ZYN_BASE_LIBS   = $(shell pkg-config --libs liblo mxml) -lpthread
+ZYN_BASE_LIBS   = $(shell pkg-config $(PKG_CONFIG_FLAGS) --libs liblo mxml) -lpthread
 ZYN_BASE_LIBS  += $(LIBDL_LIBS)
 
 # DSP flags
 ZYN_DSP_FLAGS  = $(ZYN_BASE_FLAGS)
-ZYN_DSP_FLAGS += $(shell pkg-config --cflags fftw3 zlib)
+ZYN_DSP_FLAGS += $(shell pkg-config $(PKG_CONFIG_FLAGS) --cflags fftw3 zlib)
 ZYN_DSP_LIBS   = $(ZYN_BASE_LIBS)
-ZYN_DSP_LIBS  += $(shell pkg-config --libs fftw3 zlib)
+ZYN_DSP_LIBS  += $(shell pkg-config $(PKG_CONFIG_FLAGS) --libs fftw3 zlib)
 
 ifeq ($(SKIP_ZYN_SYNTH),true)
 BASE_FLAGS    += -DSKIP_ZYN_SYNTH
@@ -114,8 +114,8 @@ ZYN_UI_LIBS   = $(ZYN_BASE_LIBS)
 # NTK or FLTK UI flags
 ifeq ($(HAVE_NTK),true)
 FLUID          = ntk-fluid
-ZYN_UI_FLAGS  += $(shell pkg-config --cflags ntk_images ntk) -DNTK_GUI
-ZYN_UI_LIBS   += $(shell pkg-config --libs ntk_images ntk)
+ZYN_UI_FLAGS  += $(shell pkg-config $(PKG_CONFIG_FLAGS) --cflags ntk_images ntk) -DNTK_GUI
+ZYN_UI_LIBS   += $(shell pkg-config $(PKG_CONFIG_FLAGS) --libs ntk_images ntk)
 else # HAVE_NTK
 FLUID          = fluid
 ZYN_UI_FLAGS  += $(shell fltk-config --use-images --cxxflags) -DFLTK_GUI
@@ -124,8 +124,8 @@ endif # HAVE_NTK
 
 # UI extra flags
 ifeq ($(HAVE_X11),true)
-ZYN_UI_FLAGS += $(shell pkg-config --cflags x11)
-ZYN_UI_LIBS  += $(shell pkg-config --libs x11)
+ZYN_UI_FLAGS += $(shell pkg-config $(PKG_CONFIG_FLAGS) --cflags x11)
+ZYN_UI_LIBS  += $(shell pkg-config $(PKG_CONFIG_FLAGS) --libs x11)
 endif
 ifeq ($(LINUX),true)
 ZYN_UI_LIBS  += -lrt

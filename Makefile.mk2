@@ -12,7 +12,7 @@ nothing:
 # ---------------------------------------------------------------------------------------------------------------------
 # DPF plugins
 
-OBJS_all += \
+OBJS += \
 	$(OBJDIR)/distrho-3bandeq.cpp.o \
 	$(OBJDIR)/distrho-3bandsplitter.cpp.o \
 	$(OBJDIR)/distrho-kars.cpp.o \
@@ -28,7 +28,7 @@ endif
 # ---------------------------------------------------------------------------------------------------------------------
 # DPF plugins (Juice)
 
-OBJS_all += \
+OBJS += \
 	$(OBJDIR)/distrho-vectorjuice.cpp.o \
 	$(OBJDIR)/distrho-wobblejuice.cpp.o
 
@@ -36,12 +36,12 @@ OBJS_all += \
 # ZynAddSubFX
 
 ifeq ($(HAVE_ZYN_DEPS),true)
-OBJS_all += \
+OBJS += \
 	$(OBJDIR)/zynaddsubfx-fx.cpp.o \
 	$(OBJDIR)/zynaddsubfx-src.cpp.o
 
 ifneq ($(SKIP_ZYN_SYNTH),true)
-OBJS_all += \
+OBJS += \
 	$(OBJDIR)/zynaddsubfx-synth.cpp.o
 endif
 

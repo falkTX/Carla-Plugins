@@ -1,6 +1,6 @@
 /*
  * Carla Native Plugins
- * Copyright (C) 2012-2017 Filipe Coelho <falktx@falktx.com>
+ * Copyright (C) 2012-2019 Filipe Coelho <falktx@falktx.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -148,7 +148,8 @@ protected:
         fEffect->cleanup();
     }
 
-    void process(float** const inBuffer, float** const outBuffer, const uint32_t frames, const NativeMidiEvent* const, const uint32_t) final
+    void process(const float** const inBuffer, float** const outBuffer, const uint32_t frames,
+                 const NativeMidiEvent* const, const uint32_t) final
     {
         if (outBuffer[0] != inBuffer[0])
             carla_copyWithMultiply(outBuffer[0], inBuffer[0], 0.5f, frames);
@@ -186,7 +187,9 @@ protected:
             }
         }
 
-        fEffect->out(Stereo<float*>(inBuffer[0], inBuffer[1]));
+        // FIXME
+        fEffect->out(Stereo<float*>(const_cast<float*>(inBuffer[0]),
+                                    const_cast<float*>(inBuffer[1])));
 
         carla_addWithMultiply(outBuffer[0], efxoutl, 0.5f, frames);
         carla_addWithMultiply(outBuffer[1], efxoutr, 0.5f, frames);

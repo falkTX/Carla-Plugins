@@ -20,11 +20,14 @@
 #include "CarlaUtils.hpp"
 
 #ifndef CARLA_EXTERNAL_PLUGINS_INCLUDED_DIRECTLY
-# define DESCFUNCS \
+# define DESCFUNCS_WITHCV \
     nullptr, nullptr, nullptr, nullptr, nullptr, \
     nullptr, nullptr, nullptr, nullptr, nullptr, \
     nullptr, nullptr, nullptr, nullptr, nullptr, \
-    nullptr, nullptr, nullptr, nullptr, nullptr, nullptr
+    nullptr, nullptr, nullptr, nullptr, nullptr, \
+    nullptr, nullptr
+# define DESCFUNCS_WITHOUTCV \
+    DESCFUNCS_WITHCV, 0, 0
 
 static const NativePluginDescriptor sNativePluginDescriptors[] = {
 #endif
@@ -53,7 +56,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* label     */ "3bandeq",
     /* maker     */ "falkTX, Michael Gruhn",
     /* copyright */ "LGPL",
-    DESCFUNCS
+    DESCFUNCS_WITHOUTCV
 },
 {
     /* category  */ NATIVE_PLUGIN_CATEGORY_EQ,
@@ -76,7 +79,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* label     */ "3bandsplitter",
     /* maker     */ "falkTX, Michael Gruhn",
     /* copyright */ "LGPL",
-    DESCFUNCS
+    DESCFUNCS_WITHOUTCV
 },
 {
     /* category  */ NATIVE_PLUGIN_CATEGORY_SYNTH,
@@ -101,7 +104,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* label     */ "kars",
     /* maker     */ "falkTX, Chris Cannam",
     /* copyright */ "ISC",
-    DESCFUNCS
+    DESCFUNCS_WITHOUTCV
 },
 {
     /* category  */ NATIVE_PLUGIN_CATEGORY_SYNTH,
@@ -127,7 +130,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* label     */ "nekobi",
     /* maker     */ "falkTX, Sean Bolton and others",
     /* copyright */ "GPL v2+",
-    DESCFUNCS
+    DESCFUNCS_WITHOUTCV
 },
 {
     /* category  */ NATIVE_PLUGIN_CATEGORY_UTILITY,
@@ -150,7 +153,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* label     */ "pingpongpan",
     /* maker     */ "falkTX, Michael Gruhn",
     /* copyright */ "LGPL",
-    DESCFUNCS
+    DESCFUNCS_WITHOUTCV
 },
 #ifdef HAVE_DGL
 #ifdef HAVE_PROJECTM
@@ -171,7 +174,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* label     */ "prom",
     /* maker     */ "falkTX",
     /* copyright */ "LGPL",
-    DESCFUNCS
+    DESCFUNCS_WITHOUTCV
 },
 #endif // HAVE_PROJECTM
 #endif // HAVE_DGL
@@ -202,7 +205,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* label     */ "wobblejuice",
     /* maker     */ "Andre Sklenar",
     /* copyright */ "GPL v2+",
-    DESCFUNCS
+    DESCFUNCS_WITHOUTCV
 },
 {
     /* category  */ NATIVE_PLUGIN_CATEGORY_UTILITY,
@@ -227,7 +230,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* label     */ "vectorjuice",
     /* maker     */ "Andre Sklenar",
     /* copyright */ "GPL v2+",
-    DESCFUNCS
+    DESCFUNCS_WITHOUTCV
 },
 
 // --------------------------------------------------------------------------------------------------------------------
@@ -250,7 +253,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* label     */ "zynalienwah",
     /* maker     */ "falkTX, Mark McCurry, Nasca Octavian Paul",
     /* copyright */ "GNU GPL v2+",
-    DESCFUNCS
+    DESCFUNCS_WITHOUTCV
 },
 {
     /* category  */ NATIVE_PLUGIN_CATEGORY_MODULATOR,
@@ -268,7 +271,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* label     */ "zynchorus",
     /* maker     */ "falkTX, Mark McCurry, Nasca Octavian Paul",
     /* copyright */ "GNU GPL v2+",
-    DESCFUNCS
+    DESCFUNCS_WITHOUTCV
 },
 {
     /* category  */ NATIVE_PLUGIN_CATEGORY_MODULATOR,
@@ -285,7 +288,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* label     */ "zyndistortion",
     /* maker     */ "falkTX, Mark McCurry, Nasca Octavian Paul",
     /* copyright */ "GNU GPL v2+",
-    DESCFUNCS
+    DESCFUNCS_WITHOUTCV
 },
 {
     /* category  */ NATIVE_PLUGIN_CATEGORY_FILTER,
@@ -302,7 +305,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* label     */ "zyndynamicfilter",
     /* maker     */ "falkTX, Mark McCurry, Nasca Octavian Paul",
     /* copyright */ "GNU GPL v2+",
-    DESCFUNCS
+    DESCFUNCS_WITHOUTCV
 },
 {
     /* category  */ NATIVE_PLUGIN_CATEGORY_DELAY,
@@ -320,7 +323,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* label     */ "zynecho",
     /* maker     */ "falkTX, Mark McCurry, Nasca Octavian Paul",
     /* copyright */ "GNU GPL v2+",
-    DESCFUNCS
+    DESCFUNCS_WITHOUTCV
 },
 {
     /* category  */ NATIVE_PLUGIN_CATEGORY_MODULATOR,
@@ -337,7 +340,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* label     */ "zynphaser",
     /* maker     */ "falkTX, Mark McCurry, Nasca Octavian Paul",
     /* copyright */ "GNU GPL v2+",
-    DESCFUNCS
+    DESCFUNCS_WITHOUTCV
 },
 {
     /* category  */ NATIVE_PLUGIN_CATEGORY_DELAY,
@@ -354,7 +357,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* label     */ "zynreverb",
     /* maker     */ "falkTX, Mark McCurry, Nasca Octavian Paul",
     /* copyright */ "GNU GPL v2+",
-    DESCFUNCS
+    DESCFUNCS_WITHOUTCV
 },
 # ifndef SKIP_ZYN_SYNTH
 {
@@ -379,7 +382,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* label     */ "zynaddsubfx",
     /* maker     */ "falkTX, Mark McCurry, Nasca Octavian Paul",
     /* copyright */ "GNU GPL v2+",
-    DESCFUNCS
+    DESCFUNCS_WITHOUTCV
 },
 # endif // ! SKIP_ZYN_SYNTH
 #endif // HAVE_ZYN_DEPS

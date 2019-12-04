@@ -856,7 +856,7 @@ private:
     float fParameters[kParamCount];
 
     CarlaMutex fMutex;
-    ScopedPointer<MiddleWareThread> fMiddleWareThread;
+    CarlaScopedPointer<MiddleWareThread> fMiddleWareThread;
 
     static MidiControllers getZynControlFromIndex(const uint index)
     {

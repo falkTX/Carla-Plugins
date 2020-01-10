@@ -130,7 +130,7 @@ void DistrhoPluginPingPongPan::deactivate()
     wavePos = 0.0f;
 }
 
-void DistrhoPluginPingPongPan::run(const float** inputs, float** outputs, uint32_t frames)
+void DistrhoPluginPingPongPan::run(const float* const* inputs, float** outputs, uint32_t frames)
 {
     const float* in1  = inputs[0];
     const float* in2  = inputs[1];

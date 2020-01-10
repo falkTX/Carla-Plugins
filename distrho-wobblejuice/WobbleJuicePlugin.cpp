@@ -179,7 +179,7 @@ void WobbleJuicePlugin::activate()
     sinePos = 0.0;
 }
 
-void WobbleJuicePlugin::run(const float** inputs, float** outputs, uint32_t frames)
+void WobbleJuicePlugin::run(const float* const* inputs, float** outputs, uint32_t frames)
 {
     //fetch the timepos struct from host;
     const TimePosition& time(getTimePosition());

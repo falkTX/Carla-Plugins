@@ -83,7 +83,7 @@ void DistrhoPluginKars::activate()
     }
 }
 
-void DistrhoPluginKars::run(const float**, float** outputs, uint32_t frames, const MidiEvent* midiEvents, uint32_t midiEventCount)
+void DistrhoPluginKars::run(const float* const*, float** outputs, uint32_t frames, const MidiEvent* midiEvents, uint32_t midiEventCount)
 {
     uint8_t note, velo;
     float* out = outputs[0];

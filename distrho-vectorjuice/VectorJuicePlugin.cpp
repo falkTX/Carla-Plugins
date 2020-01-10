@@ -349,7 +349,7 @@ void VectorJuicePlugin::activate()
     }
 }
 
-void VectorJuicePlugin::run(const float** inputs, float** outputs, uint32_t frames)
+void VectorJuicePlugin::run(const float* const* inputs, float** outputs, uint32_t frames)
 {
     float out1, out2, tX, tY;
 

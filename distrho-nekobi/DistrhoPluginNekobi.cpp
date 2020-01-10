@@ -352,7 +352,7 @@ void DistrhoPluginNekobi::deactivate()
         nekobee_synth_all_voices_off(&fSynth);
 }
 
-void DistrhoPluginNekobi::run(const float**, float** outputs, uint32_t frames, const MidiEvent* midiEvents, uint32_t midiEventCount)
+void DistrhoPluginNekobi::run(const float* const*, float** outputs, uint32_t frames, const MidiEvent* midiEvents, uint32_t midiEventCount)
 {
     uint32_t framesDone = 0;
     uint32_t curEventIndex = 0;

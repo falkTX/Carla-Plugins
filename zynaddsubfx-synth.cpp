@@ -659,7 +659,7 @@ protected:
     // -------------------------------------------------------------------
     // Plugin process calls
 
-    void process(const float**, float** const outBuffer, const uint32_t frames,
+    void process(const float* const*, float** const outBuffer, const uint32_t frames,
                  const NativeMidiEvent* const midiEvents, const uint32_t midiEventCount) override
     {
         if (! fMutex.tryLock())

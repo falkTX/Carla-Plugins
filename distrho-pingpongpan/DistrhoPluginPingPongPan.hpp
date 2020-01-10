@@ -93,7 +93,7 @@ protected:
 
     void activate() override;
     void deactivate() override;
-    void run(const float** inputs, float** outputs, uint32_t frames) override;
+    void run(const float* const* inputs, float** outputs, uint32_t frames) override;
 
     // -------------------------------------------------------------------
 

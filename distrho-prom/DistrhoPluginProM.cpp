@@ -55,7 +55,7 @@ void DistrhoPluginProM::setParameterValue(uint32_t, float)
 // -----------------------------------------------------------------------
 // Process
 
-void DistrhoPluginProM::run(const float** inputs, float** outputs, uint32_t frames)
+void DistrhoPluginProM::run(const float* const* inputs, float** outputs, uint32_t frames)
 {
     const float* in  = inputs[0];
     float*       out = outputs[0];

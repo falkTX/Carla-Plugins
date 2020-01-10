@@ -228,7 +228,7 @@ void DistrhoPlugin3BandEQ::deactivate()
     tmp1LP = tmp2LP = tmp1HP = tmp2HP = 0.0f;
 }
 
-void DistrhoPlugin3BandEQ::run(const float** inputs, float** outputs, uint32_t frames)
+void DistrhoPlugin3BandEQ::run(const float* const* inputs, float** outputs, uint32_t frames)
 {
     const float* in1  = inputs[0];
     const float* in2  = inputs[1];

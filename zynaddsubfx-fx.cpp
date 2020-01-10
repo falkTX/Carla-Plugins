@@ -148,7 +148,7 @@ protected:
         fEffect->cleanup();
     }
 
-    void process(const float** const inBuffer, float** const outBuffer, const uint32_t frames,
+    void process(const float* const* const inBuffer, float** const outBuffer, const uint32_t frames,
                  const NativeMidiEvent* const, const uint32_t) final
     {
         if (outBuffer[0] != inBuffer[0])

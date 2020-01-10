@@ -205,7 +205,7 @@ protected:
     // Process
 
     void activate() override;
-    void run(const float** inputs, float** outputs, uint32_t frames) override;
+    void run(const float* const* inputs, float** outputs, uint32_t frames) override;
 
     // -------------------------------------------------------------------
 

@@ -190,7 +190,7 @@ protected:
         {
             const char* uiTitle;
 
-            CARLA_SAFE_ASSERT_RETURN(readNextLineAsString(uiTitle), true);
+            CARLA_SAFE_ASSERT_RETURN(readNextLineAsString(uiTitle, false), true);
 
             try {
                 GUI::raiseUi(gui, "/ui/title", "s", uiTitle);

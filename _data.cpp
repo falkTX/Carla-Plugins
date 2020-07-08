@@ -129,7 +129,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* name      */ "Nekobi",
     /* label     */ "nekobi",
     /* maker     */ "falkTX, Sean Bolton and others",
-    /* copyright */ "GPL v2+",
+    /* copyright */ "GNU GPL v2+",
     DESCFUNCS_WITHOUTCV
 },
 {
@@ -204,7 +204,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* name      */ "WobbleJuice",
     /* label     */ "wobblejuice",
     /* maker     */ "Andre Sklenar",
-    /* copyright */ "GPL v2+",
+    /* copyright */ "GNU GPL v2+",
     DESCFUNCS_WITHOUTCV
 },
 {
@@ -229,7 +229,7 @@ static const NativePluginDescriptor sNativePluginDescriptors[] = {
     /* name      */ "VectorJuice",
     /* label     */ "vectorjuice",
     /* maker     */ "Andre Sklenar",
-    /* copyright */ "GPL v2+",
+    /* copyright */ "GNU GPL v2+",
     DESCFUNCS_WITHOUTCV
 },
 

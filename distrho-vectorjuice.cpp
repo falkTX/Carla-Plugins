@@ -66,7 +66,7 @@ static const NativePluginDescriptor vectorjuiceDesc = {
     /* name      */ DISTRHO_PLUGIN_NAME,
     /* label     */ "vectorjuice",
     /* maker     */ "Andre Sklenar",
-    /* copyright */ "GPL v2+",
+    /* copyright */ "GNU GPL v2+",
     PluginDescriptorFILL(PluginCarla)
 };
 

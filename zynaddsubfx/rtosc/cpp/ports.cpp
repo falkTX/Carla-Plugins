@@ -1431,6 +1431,8 @@ char *Ports::collapsePath(char *p)
 
 void Ports::refreshMagic()
 {
+    if (impl)
+        delete []impl->enump;
     delete impl;
     impl = new Port_Matcher;
     generate_minimal_hash(*this, *impl);

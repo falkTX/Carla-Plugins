@@ -92,7 +92,7 @@ ifneq ($(WIN32),true)
 ZYN_BASE_FLAGS += -DHAVE_ASYNC
 endif
 
-ZYN_BASE_LIBS   = $(shell pkg-config $(PKG_CONFIG_FLAGS) --libs liblo mxml) -lpthread
+ZYN_BASE_LIBS   = $(shell pkg-config $(PKG_CONFIG_FLAGS) --libs liblo mxml) -pthread
 ZYN_BASE_LIBS  += $(LIBDL_LIBS)
 
 # DSP flags

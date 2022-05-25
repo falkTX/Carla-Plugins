@@ -164,7 +164,7 @@ void DistrhoPluginNekobi::initParameter(uint32_t index, Parameter& parameter)
     switch (index)
     {
     case paramWaveform:
-        parameter.hints      = kParameterIsAutomable|kParameterIsInteger;
+        parameter.hints      = kParameterIsAutomatable|kParameterIsInteger;
         parameter.name       = "Waveform";
         parameter.symbol     = "waveform";
         parameter.ranges.def = 0.0f;
@@ -182,7 +182,7 @@ void DistrhoPluginNekobi::initParameter(uint32_t index, Parameter& parameter)
         }
         break;
     case paramTuning:
-        parameter.hints      = kParameterIsAutomable; // was 0.5 <-> 2.0, log
+        parameter.hints      = kParameterIsAutomatable; // was 0.5 <-> 2.0, log
         parameter.name       = "Tuning";
         parameter.symbol     = "tuning";
         parameter.ranges.def = 0.0f;
@@ -190,7 +190,7 @@ void DistrhoPluginNekobi::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.max = 12.0f;
         break;
     case paramCutoff:
-        parameter.hints      = kParameterIsAutomable; // modified x2.5
+        parameter.hints      = kParameterIsAutomatable; // modified x2.5
         parameter.name       = "Cutoff";
         parameter.symbol     = "cutoff";
         parameter.unit       = "%";
@@ -199,7 +199,7 @@ void DistrhoPluginNekobi::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.max = 100.0f;
         break;
     case paramResonance:
-        parameter.hints      = kParameterIsAutomable; // modified x100
+        parameter.hints      = kParameterIsAutomatable; // modified x100
         parameter.name       = "VCF Resonance";
         parameter.symbol     = "resonance";
         parameter.unit       = "%";
@@ -208,7 +208,7 @@ void DistrhoPluginNekobi::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.max = 95.0f;
         break;
     case paramEnvMod:
-        parameter.hints      = kParameterIsAutomable; // modified x100
+        parameter.hints      = kParameterIsAutomatable; // modified x100
         parameter.name       = "Env Mod";
         parameter.symbol     = "env_mod";
         parameter.unit       = "%";
@@ -217,7 +217,7 @@ void DistrhoPluginNekobi::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.max = 100.0f;
         break;
     case paramDecay:
-        parameter.hints      = kParameterIsAutomable; // was 0.000009 <-> 0.0005, log
+        parameter.hints      = kParameterIsAutomatable; // was 0.000009 <-> 0.0005, log
         parameter.name       = "Decay";
         parameter.symbol     = "decay";
         parameter.unit       = "%";
@@ -226,7 +226,7 @@ void DistrhoPluginNekobi::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.max = 100.0f;
         break;
     case paramAccent:
-        parameter.hints      = kParameterIsAutomable; // modified x100
+        parameter.hints      = kParameterIsAutomatable; // modified x100
         parameter.name       = "Accent";
         parameter.symbol     = "accent";
         parameter.unit       = "%";
@@ -235,7 +235,7 @@ void DistrhoPluginNekobi::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.max = 100.0f;
         break;
     case paramVolume:
-        parameter.hints      = kParameterIsAutomable; // modified x100
+        parameter.hints      = kParameterIsAutomatable; // modified x100
         parameter.name       = "Volume";
         parameter.symbol     = "volume";
         parameter.unit       = "%";

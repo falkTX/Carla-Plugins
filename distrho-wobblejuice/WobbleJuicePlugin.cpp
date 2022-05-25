@@ -36,7 +36,7 @@ void WobbleJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
     switch (index)
     {
     case paramDivision:
-        parameter.hints      = kParameterIsAutomable|kParameterIsInteger;
+        parameter.hints      = kParameterIsAutomatable|kParameterIsInteger;
         parameter.name       = "Division";
         parameter.symbol     = "div";
         parameter.unit       = "x";
@@ -45,7 +45,7 @@ void WobbleJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.max = 16.0f;
         break;
     case paramReso:
-        parameter.hints      = kParameterIsAutomable;
+        parameter.hints      = kParameterIsAutomatable;
         parameter.name       = "Resonance";
         parameter.symbol     = "reso";
         parameter.unit       = "";
@@ -54,7 +54,7 @@ void WobbleJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.max = 0.2f;
         break;
     case paramRange:
-        parameter.hints      = kParameterIsAutomable;
+        parameter.hints      = kParameterIsAutomatable;
         parameter.name       = "Range";
         parameter.symbol     = "rng";
         parameter.unit       = "Hz";
@@ -63,7 +63,7 @@ void WobbleJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.max = 16000.0f;
         break;
     case paramPhase:
-        parameter.hints      = kParameterIsAutomable;
+        parameter.hints      = kParameterIsAutomatable;
         parameter.name       = "Phase";
         parameter.symbol     = "phs";
         parameter.unit       = "Deg";
@@ -72,7 +72,7 @@ void WobbleJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.max = 1.0f;
         break;
     case paramWave:
-        parameter.hints      = kParameterIsAutomable;
+        parameter.hints      = kParameterIsAutomatable;
         parameter.name       = "Wave";
         parameter.symbol     = "wav";
         parameter.unit       = "";
@@ -81,7 +81,7 @@ void WobbleJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.max = 4.0f;
         break;
     case paramDrive:
-        parameter.hints      = kParameterIsAutomable;
+        parameter.hints      = kParameterIsAutomatable;
         parameter.name       = "Drive";
         parameter.symbol     = "drv";
         parameter.unit       = "";

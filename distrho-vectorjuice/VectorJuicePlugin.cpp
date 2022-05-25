@@ -36,7 +36,7 @@ void VectorJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
     switch (index)
     {
     case paramX:
-        parameter.hints      = kParameterIsAutomable;
+        parameter.hints      = kParameterIsAutomatable;
         parameter.name       = "X";
         parameter.symbol     = "x";
         parameter.ranges.def = 0.5f;
@@ -45,7 +45,7 @@ void VectorJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
         break;
 
     case paramY:
-        parameter.hints      = kParameterIsAutomable;
+        parameter.hints      = kParameterIsAutomatable;
         parameter.name       = "Y";
         parameter.symbol     = "y";
         parameter.ranges.def = 0.5f;
@@ -54,7 +54,7 @@ void VectorJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
         break;
 
     case paramOrbitSizeX:
-        parameter.hints      = kParameterIsAutomable;
+        parameter.hints      = kParameterIsAutomatable;
         parameter.name       = "Orbit Size X";
         parameter.symbol     = "sizex";
         parameter.ranges.def = 0.5f;
@@ -63,7 +63,7 @@ void VectorJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
         break;
 
     case paramOrbitSizeY:
-        parameter.hints      = kParameterIsAutomable;
+        parameter.hints      = kParameterIsAutomatable;
         parameter.name       = "Orbit Size Y";
         parameter.symbol     = "sizey";
         parameter.ranges.def = 0.5f;
@@ -72,7 +72,7 @@ void VectorJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
         break;
 
     case paramOrbitSpeedX:
-        parameter.hints      = kParameterIsAutomable|kParameterIsInteger;
+        parameter.hints      = kParameterIsAutomatable|kParameterIsInteger;
         parameter.name       = "Orbit Speed X";
         parameter.symbol     = "speedx";
         parameter.ranges.def = 4.0f;
@@ -81,7 +81,7 @@ void VectorJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
         break;
 
     case paramOrbitSpeedY:
-        parameter.hints      = kParameterIsAutomable|kParameterIsInteger;
+        parameter.hints      = kParameterIsAutomatable|kParameterIsInteger;
         parameter.name       = "Orbit Speed Y";
         parameter.symbol     = "speedy";
         parameter.ranges.def = 4.0f;
@@ -90,7 +90,7 @@ void VectorJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
         break;
 
     case paramSubOrbitSize:
-        parameter.hints      = kParameterIsAutomable;
+        parameter.hints      = kParameterIsAutomatable;
         parameter.name       = "SubOrbit Size";
         parameter.symbol     = "subsize";
         parameter.ranges.def = 0.5f;
@@ -99,7 +99,7 @@ void VectorJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
         break;
 
     case paramSubOrbitSpeed:
-        parameter.hints      = kParameterIsAutomable;
+        parameter.hints      = kParameterIsAutomatable;
         parameter.name       = "SubOrbit Speed";
         parameter.symbol     = "subspeed";
         parameter.ranges.def = 32.0f;
@@ -108,7 +108,7 @@ void VectorJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
         break;
 
     case paramSubOrbitSmooth:
-        parameter.hints      = kParameterIsAutomable;
+        parameter.hints      = kParameterIsAutomatable;
         parameter.name       = "SubOrbit Wave";
         parameter.symbol     = "subwave";
         parameter.ranges.def = 0.5f;
@@ -117,7 +117,7 @@ void VectorJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
         break;
 
     case paramOrbitWaveX:
-        parameter.hints      = kParameterIsAutomable|kParameterIsInteger;
+        parameter.hints      = kParameterIsAutomatable|kParameterIsInteger;
         parameter.name       = "Orbit Wave X";
         parameter.symbol     = "wavex";
         parameter.ranges.def = 3.0f;
@@ -126,7 +126,7 @@ void VectorJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
         break;
 
     case paramOrbitWaveY:
-        parameter.hints      = kParameterIsAutomable|kParameterIsInteger;
+        parameter.hints      = kParameterIsAutomatable|kParameterIsInteger;
         parameter.name       = "Orbit Wave Y";
         parameter.symbol     = "wavey";
         parameter.ranges.def = 3.0f;
@@ -135,7 +135,7 @@ void VectorJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
         break;
 
     case paramOrbitPhaseX:
-        parameter.hints      = kParameterIsAutomable|kParameterIsInteger;
+        parameter.hints      = kParameterIsAutomatable|kParameterIsInteger;
         parameter.name       = "Orbit Phase X";
         parameter.symbol     = "phasex";
         parameter.ranges.def = 1.0f;
@@ -144,7 +144,7 @@ void VectorJuicePlugin::initParameter(uint32_t index, Parameter& parameter)
         break;
 
     case paramOrbitPhaseY:
-        parameter.hints      = kParameterIsAutomable|kParameterIsInteger;
+        parameter.hints      = kParameterIsAutomatable|kParameterIsInteger;
         parameter.name       = "Orbit Phase Y";
         parameter.symbol     = "phasey";
         parameter.ranges.def = 1.0f;

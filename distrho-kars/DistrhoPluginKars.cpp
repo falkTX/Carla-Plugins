@@ -41,7 +41,7 @@ void DistrhoPluginKars::initParameter(uint32_t index, Parameter& parameter)
     if (index != 0)
         return;
 
-    parameter.hints      = kParameterIsAutomable|kParameterIsBoolean;
+    parameter.hints      = kParameterIsAutomatable|kParameterIsBoolean;
     parameter.name       = "Sustain";
     parameter.symbol     = "sustain";
     parameter.ranges.def = 0.0f;

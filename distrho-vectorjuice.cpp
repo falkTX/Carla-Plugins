@@ -28,7 +28,7 @@
 
 // Plugin Code
 #include "distrho-vectorjuice/VectorJuicePlugin.cpp"
-#ifdef HAVE_DGL
+#if DISTRHO_PLUGIN_HAS_UI
 #include "distrho-vectorjuice/VectorJuiceArtwork.cpp"
 #include "distrho-vectorjuice/VectorJuiceUI.cpp"
 #endif
@@ -36,7 +36,7 @@
 // DISTRHO Code
 #define DISTRHO_PLUGIN_TARGET_CARLA
 #include "DistrhoPluginMain.cpp"
-#ifdef HAVE_DGL
+#if DISTRHO_PLUGIN_HAS_UI
 #include "DistrhoUIMain.cpp"
 #endif
 
@@ -46,7 +46,7 @@ START_NAMESPACE_DISTRHO
 
 static const NativePluginDescriptor vectorjuiceDesc = {
     /* category  */ NATIVE_PLUGIN_CATEGORY_UTILITY,
-#ifdef HAVE_DGL
+#if DISTRHO_PLUGIN_HAS_UI
     /* hints     */ static_cast<NativePluginHints>(NATIVE_PLUGIN_IS_RTSAFE
                                                   |NATIVE_PLUGIN_HAS_UI
                                                   |NATIVE_PLUGIN_NEEDS_UI_MAIN_THREAD

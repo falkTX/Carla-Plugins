@@ -26,16 +26,16 @@
 #include "CarlaJuceUtils.hpp"
 
 // Plugin Code
-#include "distrho-nekobi/DistrhoArtworkNekobi.cpp"
 #include "distrho-nekobi/DistrhoPluginNekobi.cpp"
-#ifdef HAVE_DGL
+#if DISTRHO_PLUGIN_HAS_UI
+#include "distrho-nekobi/DistrhoArtworkNekobi.cpp"
 #include "distrho-nekobi/DistrhoUINekobi.cpp"
 #endif
 
 // DISTRHO Code
 #define DISTRHO_PLUGIN_TARGET_CARLA
 #include "DistrhoPluginMain.cpp"
-#ifdef HAVE_DGL
+#if DISTRHO_PLUGIN_HAS_UI
 #include "DistrhoUIMain.cpp"
 #endif
 
@@ -45,7 +45,7 @@ START_NAMESPACE_DISTRHO
 
 static const NativePluginDescriptor nekobiDesc = {
     /* category  */ NATIVE_PLUGIN_CATEGORY_SYNTH,
-#ifdef HAVE_DGL
+#if DISTRHO_PLUGIN_HAS_UI
     /* hints     */ static_cast<NativePluginHints>(NATIVE_PLUGIN_IS_RTSAFE
                                                   |NATIVE_PLUGIN_IS_SYNTH
                                                   |NATIVE_PLUGIN_HAS_UI

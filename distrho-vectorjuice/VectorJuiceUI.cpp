@@ -25,11 +25,9 @@ START_NAMESPACE_DISTRHO
 // -----------------------------------------------------------------------
 
 VectorJuiceUI::VectorJuiceUI()
-    : UI(),
+    : UI(VectorJuiceArtwork::backgroundWidth, VectorJuiceArtwork::backgroundHeight, true),
       fAboutWindow(this)
 {
-    setSize(VectorJuiceArtwork::backgroundWidth, VectorJuiceArtwork::backgroundHeight);
-
     // xy params
     paramX = paramY = 0.5f;
 
@@ -44,7 +42,7 @@ VectorJuiceUI::VectorJuiceUI()
     fCanvasArea.setSize(368-24, 368-24);
 
     // background
-    fImgBackground = Image(VectorJuiceArtwork::backgroundData, VectorJuiceArtwork::backgroundWidth, VectorJuiceArtwork::backgroundHeight, GL_BGR);
+    fImgBackground = Image(VectorJuiceArtwork::backgroundData, VectorJuiceArtwork::backgroundWidth, VectorJuiceArtwork::backgroundHeight, kImageFormatBGR);
 
     //roundlet
     fImgRoundlet = Image(VectorJuiceArtwork::roundletData, VectorJuiceArtwork::roundletWidth, VectorJuiceArtwork::roundletHeight);
@@ -56,7 +54,7 @@ VectorJuiceUI::VectorJuiceUI()
     fImgSubOrbit = Image(VectorJuiceArtwork::subOrbitData, VectorJuiceArtwork::subOrbitWidth, VectorJuiceArtwork::subOrbitHeight);
 
     // about
-    Image aboutImage(VectorJuiceArtwork::aboutData, VectorJuiceArtwork::aboutWidth, VectorJuiceArtwork::aboutHeight, GL_BGR);
+    Image aboutImage(VectorJuiceArtwork::aboutData, VectorJuiceArtwork::aboutWidth, VectorJuiceArtwork::aboutHeight, kImageFormatBGR);
     fAboutWindow.setImage(aboutImage);
 
     // about button
@@ -303,7 +301,7 @@ void VectorJuiceUI::imageButtonClicked(ImageButton* button, int)
     if (button != fButtonAbout)
         return;
 
-    fAboutWindow.exec();
+    fAboutWindow.runAsModal();
 }
 
 void VectorJuiceUI::imageKnobDragStarted(ImageKnob* knob)
@@ -338,15 +336,17 @@ void VectorJuiceUI::imageSliderValueChanged(ImageSlider* slider, float value)
 
 void VectorJuiceUI::onDisplay()
 {
-    fImgBackground.draw();
+    const GraphicsContext& context(getGraphicsContext());
+
+    fImgBackground.draw(context);
 
     // get x, y mapped to XY area
-    int x = fCanvasArea.getX() + paramX*fCanvasArea.getWidth() - fImgRoundlet.getWidth()/2;
-    int y = fCanvasArea.getY() + paramY*fCanvasArea.getHeight() - fImgRoundlet.getHeight()/2;
-    int nOrbitX = fCanvasArea.getX()+((orbitX)*fCanvasArea.getWidth())-15;
-    int nOrbitY = fCanvasArea.getY()+((orbitY)*fCanvasArea.getWidth())-15;
-    int nSubOrbitX = fCanvasArea.getX()+(subOrbitX*fCanvasArea.getWidth())-15;
-    int nSubOrbitY = fCanvasArea.getY()+(subOrbitY*fCanvasArea.getWidth())-14;
+    const int x = fCanvasArea.getX() + paramX*fCanvasArea.getWidth() - fImgRoundlet.getWidth()/2;
+    const int y = fCanvasArea.getY() + paramY*fCanvasArea.getHeight() - fImgRoundlet.getHeight()/2;
+    const int nOrbitX = fCanvasArea.getX()+((orbitX)*fCanvasArea.getWidth())-15;
+    const int nOrbitY = fCanvasArea.getY()+((orbitY)*fCanvasArea.getWidth())-15;
+    const int nSubOrbitX = fCanvasArea.getX()+(subOrbitX*fCanvasArea.getWidth())-15;
+    const int nSubOrbitY = fCanvasArea.getY()+(subOrbitY*fCanvasArea.getWidth())-14;
 
     //draw lines, just for fun
     glEnable(GL_BLEND);
@@ -362,13 +362,10 @@ void VectorJuiceUI::onDisplay()
         glVertex2i(nSubOrbitX+15, nSubOrbitY+14);
     glEnd();
 
-    // reset color
-    glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-
     // draw roundlet and orbits
-    fImgRoundlet.drawAt(x, y);
-    fImgOrbit.drawAt(nOrbitX, nOrbitY);
-    fImgSubOrbit.drawAt(nSubOrbitX, nSubOrbitY);
+    fImgRoundlet.drawAt(context, x, y);
+    fImgOrbit.drawAt(context, nOrbitX, nOrbitY);
+    fImgSubOrbit.drawAt(context, nSubOrbitX, nSubOrbitY);
 }
 
 bool VectorJuiceUI::onMouse(const MouseEvent& ev)
@@ -378,7 +375,9 @@ bool VectorJuiceUI::onMouse(const MouseEvent& ev)
 
     if (ev.press)
     {
-        if (! fCanvasArea.contains(ev.pos))
+        const double scaling = getWidth() / static_cast<double>(VectorJuiceArtwork::backgroundWidth);
+
+        if (! fCanvasArea.containsAfterScaling(ev.pos, scaling))
             return false;
 
         fDragging = true;
@@ -401,6 +400,7 @@ bool VectorJuiceUI::onMotion(const MotionEvent& ev)
     if (! fDragging)
         return false;
 
+    const double scaling = getWidth() / static_cast<double>(VectorJuiceArtwork::backgroundWidth);
     const int x = ev.pos.getX();
     const int y = ev.pos.getY();
 
@@ -419,8 +419,8 @@ bool VectorJuiceUI::onMotion(const MotionEvent& ev)
     float newX = paramX;
     float newY = paramY;
 
-    newX -= float(movedX)/fCanvasArea.getWidth();
-    newY -= float(movedY)/fCanvasArea.getHeight();
+    newX -= float(movedX)/fCanvasArea.getWidth()/scaling;
+    newY -= float(movedY)/fCanvasArea.getHeight()/scaling;
 
     if (newX < 0.0f)
         newX = 0.0f;

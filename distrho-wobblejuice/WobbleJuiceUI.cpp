@@ -23,20 +23,18 @@ START_NAMESPACE_DISTRHO
 // -----------------------------------------------------------------------
 
 WobbleJuiceUI::WobbleJuiceUI()
-    : UI(),
+    : UI(WobbleJuiceArtwork::backgroundWidth, WobbleJuiceArtwork::backgroundHeight, true),
       fAboutWindow(this)
 {
-    setSize(WobbleJuiceArtwork::backgroundWidth, WobbleJuiceArtwork::backgroundHeight);
-
     // background
-    fImgBackground = Image(WobbleJuiceArtwork::backgroundData, WobbleJuiceArtwork::backgroundWidth, WobbleJuiceArtwork::backgroundHeight, GL_BGR);
+    fImgBackground = Image(WobbleJuiceArtwork::backgroundData, WobbleJuiceArtwork::backgroundWidth, WobbleJuiceArtwork::backgroundHeight, kImageFormatBGR);
 
     // about
-    Image aboutImage(WobbleJuiceArtwork::aboutData, WobbleJuiceArtwork::aboutWidth, WobbleJuiceArtwork::aboutHeight, GL_BGR);
+    Image aboutImage(WobbleJuiceArtwork::aboutData, WobbleJuiceArtwork::aboutWidth, WobbleJuiceArtwork::aboutHeight, kImageFormatBGR);
     fAboutWindow.setImage(aboutImage);
 
     // knobs
-    Image knobImage(WobbleJuiceArtwork::knobData, WobbleJuiceArtwork::knobWidth, WobbleJuiceArtwork::knobHeight);
+    Image knobImage(WobbleJuiceArtwork::knobData, WobbleJuiceArtwork::knobWidth, WobbleJuiceArtwork::knobHeight, kImageFormatBGRA);
 
     // knob Division
     fKnobDivision = new ImageKnob(this, knobImage, ImageKnob::Vertical);
@@ -94,8 +92,8 @@ WobbleJuiceUI::WobbleJuiceUI()
     fKnobDrive->setCallback(this);
 
     // about button
-    Image aboutImageNormal(WobbleJuiceArtwork::aboutButtonNormalData, WobbleJuiceArtwork::aboutButtonNormalWidth, WobbleJuiceArtwork::aboutButtonNormalHeight);
-    Image aboutImageHover(WobbleJuiceArtwork::aboutButtonHoverData, WobbleJuiceArtwork::aboutButtonHoverWidth, WobbleJuiceArtwork::aboutButtonHoverHeight);
+    Image aboutImageNormal(WobbleJuiceArtwork::aboutButtonNormalData, WobbleJuiceArtwork::aboutButtonNormalWidth, WobbleJuiceArtwork::aboutButtonNormalHeight, kImageFormatBGRA);
+    Image aboutImageHover(WobbleJuiceArtwork::aboutButtonHoverData, WobbleJuiceArtwork::aboutButtonHoverWidth, WobbleJuiceArtwork::aboutButtonHoverHeight, kImageFormatBGRA);
     fButtonAbout = new ImageButton(this, aboutImageNormal, aboutImageHover, aboutImageHover);
     fButtonAbout->setAbsolutePos(390, 20);
     fButtonAbout->setCallback(this);
@@ -154,7 +152,7 @@ void WobbleJuiceUI::imageButtonClicked(ImageButton* button, int)
     if (button != fButtonAbout)
         return;
 
-    fAboutWindow.exec();
+    fAboutWindow.runAsModal();
 }
 
 void WobbleJuiceUI::imageKnobDragStarted(ImageKnob* knob)
@@ -174,7 +172,9 @@ void WobbleJuiceUI::imageKnobValueChanged(ImageKnob* knob, float value)
 
 void WobbleJuiceUI::onDisplay()
 {
-    fImgBackground.draw();
+    const GraphicsContext& context(getGraphicsContext());
+
+    fImgBackground.draw(context);
 }
 
 // -----------------------------------------------------------------------

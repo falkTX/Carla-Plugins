@@ -135,7 +135,6 @@ DistrhoPluginNekobi::DistrhoPluginNekobi()
     fParams.decay  = 75.0f;
     fParams.accent = 25.0f;
     fParams.volume = 75.0f;
-    fParams.bypass = false;
 
     // Internal stuff
     fSynth.waveform  = 0.0f;
@@ -172,6 +171,7 @@ void DistrhoPluginNekobi::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.max = 1.0f;
         parameter.enumValues.count = 2;
         parameter.enumValues.restrictedMode = true;
+        parameter.midiCC = 70; //Sound Variation
         {
             ParameterEnumerationValue* const enumValues = new ParameterEnumerationValue[2];
             enumValues[0].value = 0.0f;
@@ -188,6 +188,7 @@ void DistrhoPluginNekobi::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.def = 0.0f;
         parameter.ranges.min = -12.0f;
         parameter.ranges.max = 12.0f;
+        parameter.midiCC = 75;
         break;
     case paramCutoff:
         parameter.hints      = kParameterIsAutomatable; // modified x2.5
@@ -197,6 +198,7 @@ void DistrhoPluginNekobi::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.def = 25.0f;
         parameter.ranges.min = 0.0f;
         parameter.ranges.max = 100.0f;
+        parameter.midiCC = 74;
         break;
     case paramResonance:
         parameter.hints      = kParameterIsAutomatable; // modified x100
@@ -206,6 +208,7 @@ void DistrhoPluginNekobi::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.def = 25.0f;
         parameter.ranges.min = 0.0f;
         parameter.ranges.max = 95.0f;
+        parameter.midiCC = 71;
         break;
     case paramEnvMod:
         parameter.hints      = kParameterIsAutomatable; // modified x100
@@ -215,6 +218,7 @@ void DistrhoPluginNekobi::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.def = 50.0f;
         parameter.ranges.min = 0.0f;
         parameter.ranges.max = 100.0f;
+        parameter.midiCC = 1; //Mod Wheel
         break;
     case paramDecay:
         parameter.hints      = kParameterIsAutomatable; // was 0.000009 <-> 0.0005, log
@@ -224,6 +228,7 @@ void DistrhoPluginNekobi::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.def = 75.0f;
         parameter.ranges.min = 0.0f;
         parameter.ranges.max = 100.0f;
+        parameter.midiCC = 72;
         break;
     case paramAccent:
         parameter.hints      = kParameterIsAutomatable; // modified x100
@@ -233,6 +238,7 @@ void DistrhoPluginNekobi::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.def = 25.0f;
         parameter.ranges.min = 0.0f;
         parameter.ranges.max = 100.0f;
+        parameter.midiCC = 76;
         break;
     case paramVolume:
         parameter.hints      = kParameterIsAutomatable; // modified x100
@@ -242,9 +248,7 @@ void DistrhoPluginNekobi::initParameter(uint32_t index, Parameter& parameter)
         parameter.ranges.def = 75.0f;
         parameter.ranges.min = 0.0f;
         parameter.ranges.max = 100.0f;
-        break;
-    case paramBypass:
-        parameter.initDesignation(kParameterDesignationBypass);
+        parameter.midiCC = 7; //Volume
         break;
     }
 }
@@ -272,8 +276,6 @@ float DistrhoPluginNekobi::getParameterValue(uint32_t index) const
         return fParams.accent;
     case paramVolume:
         return fParams.volume;
-    case paramBypass:
-        return fParams.bypass ? 1.0f : 0.0f;
     }
 
     return 0.0f;
@@ -323,14 +325,6 @@ void DistrhoPluginNekobi::setParameterValue(uint32_t index, float value)
         fSynth.volume = value/100.0f;
         DISTRHO_SAFE_ASSERT(fSynth.volume >= 0.0f && fSynth.volume <= 1.0f);
         break;
-    case paramBypass: {
-        const bool bypass = (value > 0.5f);
-        if (fParams.bypass != bypass)
-        {
-            fParams.bypass = bypass;
-            nekobee_synth_all_voices_off(&fSynth);
-        }
-    }   break;
     }
 }
 
@@ -365,10 +359,6 @@ void DistrhoPluginNekobi::run(const float* const*, float** outputs, uint32_t fra
         std::memset(out, 0, sizeof(float)*frames);
         return;
     }
-
-    // ignore midi input if bypassed
-    if (fParams.bypass)
-        midiEventCount = 0;
 
     while (framesDone < frames)
     {

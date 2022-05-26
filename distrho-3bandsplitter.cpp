@@ -27,16 +27,16 @@
 #include "CarlaJuceUtils.hpp"
 
 // Plugin Code
-#include "distrho-3bandsplitter/DistrhoArtwork3BandSplitter.cpp"
 #include "distrho-3bandsplitter/DistrhoPlugin3BandSplitter.cpp"
-#ifdef HAVE_DGL
+#if DISTRHO_PLUGIN_HAS_UI
+#include "distrho-3bandsplitter/DistrhoArtwork3BandSplitter.cpp"
 #include "distrho-3bandsplitter/DistrhoUI3BandSplitter.cpp"
 #endif
 
 // DISTRHO Code
 #define DISTRHO_PLUGIN_TARGET_CARLA
 #include "DistrhoPluginMain.cpp"
-#ifdef HAVE_DGL
+#if DISTRHO_PLUGIN_HAS_UI
 #include "DistrhoUIMain.cpp"
 #endif
 
@@ -46,7 +46,7 @@ START_NAMESPACE_DISTRHO
 
 static const NativePluginDescriptor _3bandsplitterDesc = {
     /* category  */ NATIVE_PLUGIN_CATEGORY_EQ,
-#ifdef HAVE_DGL
+#if DISTRHO_PLUGIN_HAS_UI
     /* hints     */ static_cast<NativePluginHints>(NATIVE_PLUGIN_IS_RTSAFE
                                                   |NATIVE_PLUGIN_HAS_UI
                                                   |NATIVE_PLUGIN_NEEDS_UI_MAIN_THREAD

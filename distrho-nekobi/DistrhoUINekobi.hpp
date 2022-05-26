@@ -1,6 +1,6 @@
 /*
  * DISTRHO Nekobi Plugin, based on Nekobee by Sean Bolton and others.
- * Copyright (C) 2013-2015 Filipe Coelho <falktx@falktx.com>
+ * Copyright (C) 2013-2021 Filipe Coelho <falktx@falktx.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -37,21 +37,18 @@ START_NAMESPACE_DISTRHO
 class DistrhoUINekobi : public UI,
                         public ImageButton::Callback,
                         public ImageKnob::Callback,
-                        public ImageSlider::Callback
+                        public ImageSlider::Callback,
+                        public IdleCallback
 {
 public:
     DistrhoUINekobi();
+    ~DistrhoUINekobi() override;
 
 protected:
     // -------------------------------------------------------------------
     // DSP Callbacks
 
     void parameterChanged(uint32_t index, float value) override;
-
-    // -------------------------------------------------------------------
-    // UI Callbacks
-
-    void uiIdle() override;
 
     // -------------------------------------------------------------------
     // Widget Callbacks
@@ -65,6 +62,11 @@ protected:
     void imageSliderValueChanged(ImageSlider* slider, float value) override;
 
     void onDisplay() override;
+
+    // -------------------------------------------------------------------
+    // Other Callbacks
+
+    void idleCallback() override;
 
 private:
     Image            fImgBackground;

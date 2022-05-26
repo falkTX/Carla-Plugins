@@ -88,7 +88,7 @@ private:
     bool fDragValid;
     int  fLastX;
     int  fLastY;
-    DGL_NAMESPACE::Rectangle<int> fCanvasArea;
+    DGL_NAMESPACE::Rectangle<double> fCanvasArea;
     float orbitX, orbitY, subOrbitX, subOrbitY;
 };
 

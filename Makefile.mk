@@ -14,11 +14,11 @@ ifeq ($(MACOS_OR_WIN32),true)
 SKIP_ZYN_SYNTH = true
 endif
 
-HAVE_NTK      = $(shell pkg-config --exists ntk ntk_images && echo true)
-HAVE_PROJECTM = $(shell pkg-config --exists libprojectM && echo true)
-ifneq ($(MACOS_OLD),true)
-HAVE_ZYN_DEPS = $(shell pkg-config --exists liblo fftw3 mxml zlib && echo true)
-endif
+# HAVE_NTK      = $(shell pkg-config --exists ntk ntk_images && echo true)
+# HAVE_PROJECTM = $(shell pkg-config --exists libprojectM && echo true)
+# ifneq ($(MACOS_OLD),true)
+# HAVE_ZYN_DEPS = $(shell pkg-config --exists liblo fftw3 mxml zlib && echo true)
+# endif
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Check for optional libs (special non-pkgconfig unix tests)
@@ -75,9 +75,7 @@ DPF_FLAGS  = -I$(CWDE)/modules/distrho
 
 ifeq ($(HAVE_DGL),true)
 DPF_FLAGS += -I$(CWDE)/modules/dgl
-ifneq ($(MACOS_OR_WIN32),true)
-DPF_FLAGS += $(shell pkg-config $(PKG_CONFIG_FLAGS) --cflags gl)
-endif
+DPF_FLAGS += $(DGL_FLAGS)
 endif
 
 # ---------------------------------------------------------------------------------------------------------------------

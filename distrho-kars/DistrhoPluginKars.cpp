@@ -118,7 +118,7 @@ void DistrhoPluginKars::activate()
     }
 }
 
-void DistrhoPluginKars::run(const float* const*, float** outputs, uint32_t frames, const MidiEvent* midiEvents, uint32_t midiEventCount)
+void DistrhoPluginKars::run(const float**, float** outputs, uint32_t frames, const MidiEvent* midiEvents, uint32_t midiEventCount)
 {
     uint8_t note, velo;
     std::memset(outputs[0], 0, sizeof(float)*frames);

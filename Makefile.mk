@@ -71,10 +71,18 @@ endif
 # ---------------------------------------------------------------------------------------------------------------------
 # Flags for DPF Plugins
 
+ifeq ($(USING_CUSTOM_DPF),true)
+DPF_FLAGS  = -I$(CUSTOM_DPF_PATH)/distrho
+else
 DPF_FLAGS  = -I$(CWDE)/modules/distrho
+endif
 
 ifeq ($(HAVE_DGL),true)
+ifeq ($(USING_CUSTOM_DPF),true)
+DPF_FLAGS += -I$(CUSTOM_DPF_PATH)/dgl
+else
 DPF_FLAGS += -I$(CWDE)/modules/dgl
+endif
 DPF_FLAGS += $(DGL_FLAGS)
 endif
 

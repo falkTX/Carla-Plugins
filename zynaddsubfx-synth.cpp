@@ -205,7 +205,7 @@ private:
     const ProgramInfo** fPrograms;
 
     CARLA_PREVENT_HEAP_ALLOCATION
-    CARLA_DECLARE_NON_COPY_CLASS(ZynAddSubFxPrograms)
+    CARLA_DECLARE_NON_COPYABLE(ZynAddSubFxPrograms)
 };
 
 static ZynAddSubFxPrograms sPrograms;
@@ -244,7 +244,7 @@ public:
           MiddleWare* middleWare;
 
           CARLA_PREVENT_HEAP_ALLOCATION
-          CARLA_DECLARE_NON_COPY_CLASS(ScopedStopper)
+          CARLA_DECLARE_NON_COPYABLE(ScopedStopper)
       };
 
       MiddleWareThread()
@@ -280,7 +280,7 @@ private:
         }
     }
 
-    CARLA_DECLARE_NON_COPY_CLASS(MiddleWareThread)
+    CARLA_DECLARE_NON_COPYABLE(MiddleWareThread)
 };
 
 // -----------------------------------------------------------------------

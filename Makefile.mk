@@ -10,7 +10,7 @@ CXXFLAGS += -isystem /opt/kxstudio/include/ntk
 endif
 endif
 
-ifeq ($(MACOS_OR_WIN32),true)
+ifeq ($(MACOS_OR_WINDOWS),true)
 SKIP_ZYN_SYNTH = true
 endif
 
@@ -94,7 +94,7 @@ ifeq ($(HAVE_ZYN_DEPS),true)
 # Common flags
 ZYN_BASE_FLAGS  = $(shell pkg-config $(PKG_CONFIG_FLAGS) --cflags liblo mxml)
 ZYN_BASE_FLAGS += -Iexternal/zynaddsubfx -Iexternal/zynaddsubfx/rtosc
-ifneq ($(WIN32),true)
+ifneq ($(WINDOWS),true)
 ZYN_BASE_FLAGS += -DHAVE_ASYNC
 endif
 

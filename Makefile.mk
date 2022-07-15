@@ -14,11 +14,8 @@ ifeq ($(MACOS_OR_WINDOWS),true)
 SKIP_ZYN_SYNTH = true
 endif
 
-# HAVE_NTK      = $(shell pkg-config --exists ntk ntk_images && echo true)
-# HAVE_PROJECTM = $(shell pkg-config --exists libprojectM && echo true)
-# ifneq ($(MACOS_OLD),true)
-# HAVE_ZYN_DEPS = $(shell pkg-config --exists liblo fftw3 mxml zlib && echo true)
-# endif
+HAVE_NTK      = $(shell pkg-config --exists ntk ntk_images && echo true)
+HAVE_ZYN_DEPS = $(shell pkg-config --exists liblo fftw3 mxml zlib && echo true)
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Check for optional libs (special non-pkgconfig unix tests)

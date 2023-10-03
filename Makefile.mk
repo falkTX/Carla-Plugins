@@ -76,7 +76,7 @@ endif
 
 ifeq ($(HAVE_DGL),true)
 ifeq ($(USING_CUSTOM_DPF),true)
-DPF_FLAGS += -I$(CUSTOM_DPF_PATH)/dgl
+DPF_FLAGS += -I$(CUSTOM_DPF_PATH)/dgl -I$(CUSTOM_DPF_PATH)/dgl/src/pugl-upstream/include
 else
 DPF_FLAGS += -I$(CWDE)/modules/dgl
 endif

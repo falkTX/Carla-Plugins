@@ -35,6 +35,10 @@ OBJS += \
 DPF_FLAGS += -DSTATIC_BUILD
 DPF_FLAGS += -UDONT_SET_USING_DGL_NAMESPACE
 
+ifeq ($(MACOS),true)
+DPF_FLAGS += -ObjC++
+endif
+
 # ---------------------------------------------------------------------------------------------------------------------
 # ZynAddSubFX
 

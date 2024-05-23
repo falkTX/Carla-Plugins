@@ -38,6 +38,9 @@
 #include "DistrhoPluginMain.cpp"
 #if DISTRHO_PLUGIN_HAS_UI
 #include "DistrhoUIMain.cpp"
+#ifdef CARLA_OS_MAC
+#include "DistrhoUI_macOS.mm"
+#endif
 #endif
 
 START_NAMESPACE_DISTRHO

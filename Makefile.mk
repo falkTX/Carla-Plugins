@@ -83,6 +83,14 @@ endif
 DPF_FLAGS += $(DGL_FLAGS)
 endif
 
+ifeq ($(USE_FILE_BROWSER),true)
+DPF_FLAGS += -DDGL_USE_FILE_BROWSER
+endif
+
+ifeq ($(USE_WEB_VIEW),true)
+DPF_FLAGS += -DDGL_USE_WEB_VIEW
+endif
+
 # ---------------------------------------------------------------------------------------------------------------------
 # Flags for ZynAddSubFX (DSP and UI separated)
 

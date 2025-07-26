@@ -1,6 +1,6 @@
 /*
  * Carla Native Plugins
- * Copyright (C) 2012-2022 Filipe Coelho <falktx@falktx.com>
+ * Copyright (C) 2012-2025 Filipe Coelho <falktx@falktx.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -21,6 +21,9 @@
 #include "LinkedList.hpp"
 
 #include "CarlaMathUtils.hpp"
+
+#include "distrho/extra/ScopedPointer.hpp"
+#include "distrho/extra/Sleep.hpp"
 
 #include <ctime>
 #include <set>
@@ -276,7 +279,7 @@ private:
                 fMiddleWare->tick();
             } CARLA_SAFE_EXCEPTION("ZynAddSubFX MiddleWare tick");
 
-            carla_msleep(1);
+            d_msleep(1);
         }
     }
 
@@ -856,7 +859,7 @@ private:
     float fParameters[kParamCount];
 
     CarlaMutex fMutex;
-    CarlaScopedPointer<MiddleWareThread> fMiddleWareThread;
+    ScopedPointer<MiddleWareThread> fMiddleWareThread;
 
     static MidiControllers getZynControlFromIndex(const uint index)
     {

@@ -1,6 +1,6 @@
 /*
  * Carla Native Plugins
- * Copyright (C) 2012-2017 Filipe Coelho <falktx@falktx.com>
+ * Copyright (C) 2012-2025 Filipe Coelho <falktx@falktx.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -15,8 +15,9 @@
  * For a full copy of the GNU General Public License see the doc/GPL.txt file.
  */
 
-#include "CarlaString.hpp"
 #include "CarlaPipeUtils.hpp"
+
+#include "distrho/extra/String.hpp"
 
 #define PLUGINVERSION
 #define SOURCE_DIR "/usr/share/zynaddsubfx"
@@ -25,16 +26,16 @@
 #ifdef NTK_GUI
 # include <dlfcn.h>
 
-static CarlaString getResourceDir()
+static String getResourceDir()
 {
     Dl_info exeInfo;
     dladdr((void*)getResourceDir, &exeInfo);
 
-    CarlaString filename(exeInfo.dli_fname);
+    String filename(exeInfo.dli_fname);
     return filename.truncate(filename.rfind("-ui"));
 }
 
-CarlaString gUiPixmapPath(getResourceDir());
+static String gUiPixmapPath(getResourceDir());
 #endif
 
 // base c-style headers
@@ -148,6 +149,21 @@ protected:
             float value;
             CARLA_SAFE_ASSERT_RETURN(readNextLineAsUInt(index), true);
             CARLA_SAFE_ASSERT_RETURN(readNextLineAsFloat(value), true);
+
+            // TODO
+            return true;
+        }
+
+        if (std::strcmp(msg, "note") == 0)
+        {
+            bool onOff;
+            uint8_t channel;
+            uint8_t note;
+            uint8_t velocity;
+            CARLA_SAFE_ASSERT_RETURN(readNextLineAsBool(onOff), true);
+            CARLA_SAFE_ASSERT_RETURN(readNextLineAsByte(channel), true);
+            CARLA_SAFE_ASSERT_RETURN(readNextLineAsByte(note), true);
+            CARLA_SAFE_ASSERT_RETURN(readNextLineAsByte(velocity), true);
 
             // TODO
             return true;

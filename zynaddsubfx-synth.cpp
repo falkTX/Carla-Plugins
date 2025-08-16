@@ -22,8 +22,8 @@
 
 #include "CarlaMathUtils.hpp"
 
-#include "distrho/extra/ScopedPointer.hpp"
-#include "distrho/extra/Sleep.hpp"
+#include "extra/ScopedPointer.hpp"
+#include "extra/Sleep.hpp"
 
 #include <ctime>
 #include <set>

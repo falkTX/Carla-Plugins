@@ -17,7 +17,7 @@
 
 #include "CarlaPipeUtils.hpp"
 
-#include "distrho/extra/String.hpp"
+#include "extra/String.hpp"
 
 #define PLUGINVERSION
 #define SOURCE_DIR "/usr/share/zynaddsubfx"
